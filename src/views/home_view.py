@@ -1,5 +1,5 @@
 import flet as ft
-
+from src.services.api import get_models
 try:
     import requests
     HAS_REQUESTS = True
@@ -9,7 +9,7 @@ except ImportError:
 def build_home_view(page: ft.Page, config: dict):
     url_input = ft.TextField(
         label="API URL",
-        hint_text="https://api.openai.com/v1",
+        hint_text="",
         width=500,
         prefix_icon=ft.Icons.LINK,          # 改这里
         value=config.get("url", ""),
@@ -54,20 +54,7 @@ def build_home_view(page: ft.Page, config: dict):
             return
 
         try:
-            headers = {"Authorization": f"Bearer {key_input.value}"}
-            resp = requests.get(
-                f"{url_input.value.rstrip('/')}/models",
-                headers=headers,
-                timeout=10
-            )
-            data = resp.json()
-
-            models = []
-            if "data" in data:
-                models = [m.get("id") for m in data["data"]]
-            elif "models" in data:
-                models = [m.get("name") or m.get("model") for m in data["models"]]
-
+            models = get_models(key_input.value, url_input.value)
             models = [m for m in models if m]
             config["models"] = models
             model_dropdown.options = [ft.dropdown.Option(m) for m in models]

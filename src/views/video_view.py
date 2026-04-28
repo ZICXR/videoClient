@@ -9,7 +9,7 @@ def build_video_view(page: ft.Page, config: dict):
         controls=[
             ft.Row(
                 [
-                    ft.IconButton(icon=ft.icons.ARROW_BACK, tooltip="返回", on_click=go_back),
+                    ft.IconButton(icon=ft.Icons.ARROW_BACK, tooltip="返回", on_click=go_back),
                     ft.Text("视频生成", size=28, weight=ft.FontWeight.BOLD, expand=True),
                 ],
                 alignment=ft.MainAxisAlignment.START,
@@ -20,8 +20,8 @@ def build_video_view(page: ft.Page, config: dict):
                     [
                         ft.Text(f"URL: {config.get('url', '')}", selectable=True),
                         ft.Text(f"Model: {config.get('model', '')}", selectable=True),
-                        ft.Divider(height=20, color=ft.colors.TRANSPARENT),
-                        ft.Text("在这里添加视频生成逻辑...", italic=True, color=ft.colors.GREY_400),
+                        ft.Divider(height=20, color=ft.Colors.TRANSPARENT),
+                        ft.Text("在这里添加视频生成逻辑...", italic=True, color=ft.Colors.GREY_400),
                     ],
                     spacing=10,
                 ),

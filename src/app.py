@@ -4,12 +4,11 @@ from src.views.home_view import build_home_view
 from src.views.image_view import build_image_view
 from src.views.video_view import build_video_view
 
-
-config = {"url": "", "key": "", "model": "", "models": []}
+from src.config.config import config
 
 def main(page: ft.Page):
     page.title = "AI 生成工具"
-    page.theme_mode = ft.ThemeMode.DARK
+    page.theme_mode = ft.ThemeMode.LIGHT 
     page.padding = 40
 
     # 0.80+ route_change 不接收参数
